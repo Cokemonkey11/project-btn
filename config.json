@@ -1,0 +1,17 @@
+{
+	"repositories": [
+		"git@bitbucket.org:Cokemonkey11/hot-potato.git",
+		"git@bitbucket.org:Cokemonkey11/microrunnertd.git",
+		"git@bitbucket.org:Cokemonkey11/the-gorge.git",
+		"git@bitbucket.org:Cokemonkey11/hunters-hall.git",
+		"git@bitbucket.org:Cokemonkey11/very-scared-footmen.git",
+		"git@bitbucket.org:Cokemonkey11/sirensong.git",
+		"git@bitbucket.org:Cokemonkey11/gargonach.git",
+		"git@bitbucket.org:Cokemonkey11/escape-ysgrilloch.git",
+		"git@bitbucket.org:Cokemonkey11/war-heroes.git"
+	],
+
+	"days-for-active": "365",
+
+	"preview-path": "resource/preview/war3mapPreview.png"
+}
