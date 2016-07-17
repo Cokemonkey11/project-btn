@@ -3,22 +3,36 @@ import os
 
 import json
 
-def checkout_script(simple_name, repo, preview_path):
-	return ("""
-mkdir %s
-cd    %s
-git   init
-git   remote add                 origin %s
-git   config core.sparseCheckout true
-echo  %s/%s > .git/info/sparse-checkout
-git   pull   origin master --depth 1
-cd    ..
-""" % (simple_name, simple_name, repo, simple_name, preview_path))
+from subprocess import call
 
-with open('config.json', 'r') as cfg:
-	config = json.load(cfg)
+from git import Repo
 
-	for repo in config["repositories"]:
-		simple_name = repo.split('/')[1].split('.git')[0]
 
-		os.systm("bash -c '%s'" % checkout_script(simple_name, repo, config['previw_path']))
+if __name__ == "__main__":
+    with open('config.json', 'r') as cfg:
+        config = json.load(cfg)
+
+        for repo in config["repositories"]:
+            simple_name = repo.split('/')[1].split('.git')[0]
+
+            r = Repo.init('gen/' + simple_name, bare=True)
+            origin = r.create_remote('origin', repo)
+
+            cw = r.config_writer()
+            #cw.set('core.bare', 'false')
+            cw.set('core.worktree', 'gen/' + simple_name)
+            cw.release()
+
+            cw = origin.config_writer
+            #cw.set('core.bare', 'false')
+            #cw.set('core.worktree', 'gen/' + simple_name)
+            cw.set('sparseCheckout', 'true')
+            cw.release()
+
+            fname = 'gen/' + simple_name + '/.git/info/sparse-checkout'
+            if not os.path.exists(os.path.dirname(fname)):
+                os.makedirs(os.path.dirname(fname))
+            with open(fname, 'w') as sparse:
+                sparse.write(simple_name + '/' + config['preview-path'])
+
+            origin.pull(depth=1)
