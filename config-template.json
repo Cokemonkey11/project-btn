@@ -13,5 +13,10 @@
 
 	"days-for-active": "365",
 
-	"preview-path": "resource/preview/war3mapPreview.png"
+	"preview-path": "resource/preview/war3mapPreview.png",
+
+	"imgur": {
+		"client-id":     "",
+		"client-secret": ""
+	}
 }
