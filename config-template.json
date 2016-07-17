@@ -1,17 +1,10 @@
 {
 	"repositories": [
-		"git@bitbucket.org:Cokemonkey11/hot-potato.git",
-		"git@bitbucket.org:Cokemonkey11/microrunnertd.git",
-		"git@bitbucket.org:Cokemonkey11/the-gorge.git",
-		"git@bitbucket.org:Cokemonkey11/hunters-hall.git",
-		"git@bitbucket.org:Cokemonkey11/very-scared-footmen.git",
-		"git@bitbucket.org:Cokemonkey11/sirensong.git",
-		"git@bitbucket.org:Cokemonkey11/gargonach.git",
-		"git@bitbucket.org:Cokemonkey11/escape-ysgrilloch.git",
-		"git@bitbucket.org:Cokemonkey11/war-heroes.git"
+		["git@bitbucket.org:Cokemonkey11/hot-potato.git",   "http://www.hiveworkshop.com/threads/hot-potato-019.198768/"],
+		["git@bitbucket.org:Cokemonkey11/hunters-hall.git", "http://www.hiveworkshop.com/threads/hunters-hall-1-5-1.164630/"]
 	],
 
-	"days-for-active": "365",
+	"days-for-active": "90",
 
 	"preview-path": "resource/preview/war3mapPreview.png",
 
