@@ -53,7 +53,8 @@ if __name__ == "__main__":
         origin.pull(depth=1)
 
         date = datetime.datetime.fromtimestamp(int(r.rev_parse('head').committed_date))
-        if (now - date).days > active_age_max:
+        age = (now - date).days
+        if age > active_age_max:
             border = passive
         else:
             border = active
@@ -61,13 +62,13 @@ if __name__ == "__main__":
         if os.path.isfile( 'gen/' + simple_name + '/' + preview_path):
             f = Image.open('gen/' + simple_name + '/' + preview_path).resize((128, 128)).convert('RGBA')
             Image.alpha_composite(f, border).save('gen/' + simple_name + '.png', "PNG")
-            files.append(('gen/' + simple_name + '.png', repo[1]))
+            files.append(('gen/' + simple_name + '.png', repo[1], age))
         else:
             print "  Don't have preview... skipping."
 
     print "Accessing imgur API."
     client = ImgurClient(config['imgur']['client-id'], config['imgur']['client-secret'])
-    for path in files:
+    for path in sorted(files, key=lambda x: x[2]):
         print "  Uploading " + path[0] + " ."
         uris.append((client.upload_from_path(path[0])['link'], path[1]))
 
