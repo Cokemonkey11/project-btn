@@ -5,7 +5,7 @@ import json, datetime, time
 
 from subprocess import call
 
-from git         import Repo, NoSuchPathError
+from git         import Repo, NoSuchPathError, InvalidGitRepositoryError
 from PIL         import Image
 from imgurpython import ImgurClient
 
@@ -27,7 +27,9 @@ if __name__ == "__main__":
     preview_path   = config["preview-path"]
 
     for index, repo in enumerate(config["repositories"]):
-        simple_name = repo[0].split('/')[1].split('.git')[0]
+        simple_name = repo[0].split('/')[-1].split('.git')[0]
+
+        assert len(simple_name) > 0
 
         tag = "[" + str(index + 1) + "/" + str(len(config["repositories"])).rjust(num_repos_size, ' ') + "]"
         print(tag + " Cloning shallow copy " + simple_name.ljust(20, ' ') + " - please wait a few minutes.")
@@ -35,7 +37,8 @@ if __name__ == "__main__":
 
         try:
             r = Repo('gen/' + simple_name)
-        except NoSuchPathError:
+        except (NoSuchPathError, InvalidGitRepositoryError) :
+            print("No such path - clone anew...")
             r = Repo.clone_from(repo[0], 'gen/' + simple_name, depth=1)
 
         origin = r.remotes.origin
