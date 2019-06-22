@@ -53,7 +53,8 @@ if __name__ == "__main__":
         with open(fname, 'w') as sparse:
             sparse.write(simple_name + '/' + preview_path)
 
-        origin.pull(depth=1)
+        origin.fetch(depth=1)
+        r.git.reset('--hard', 'origin/master')
 
         date = datetime.datetime.fromtimestamp(int(r.rev_parse('head').committed_date))
         age = (now - date).days
