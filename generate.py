@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     num_repos_size = len(str(len(config["repositories"])))
     active_age_max = int(config["days-for-active"])
-    preview_path   = config["preview-path"]
+    preview_paths  = config["preview-paths"]
 
     for index, repo in enumerate(config["repositories"]):
         simple_name = repo[0].split('/')[-1].split('.git')[0]
@@ -51,7 +51,8 @@ if __name__ == "__main__":
         if not os.path.exists(os.path.dirname(fname)):
             os.makedirs(os.path.dirname(fname))
         with open(fname, 'w') as sparse:
-            sparse.write(simple_name + '/' + preview_path)
+            for preview_path in preview_paths:
+                sparse.write(simple_name + '/' + preview_path)
 
         origin.fetch(depth=1)
         r.git.reset('--hard', 'origin/master')
@@ -63,8 +64,11 @@ if __name__ == "__main__":
         else:
             border = active
 
-        if os.path.isfile( 'gen/' + simple_name + '/' + preview_path):
-            f = Image.open('gen/' + simple_name + '/' + preview_path).resize((128, 128)).convert('RGBA')
+        qualified_preview_paths = ['gen/' + simple_name + '/' + f for f in preview_paths]
+        valid_preview_paths     = [f for f in qualified_preview_paths if os.path.isfile(f)]
+        preview_path            = next( (x for x in valid_preview_paths), None)
+        if preview_path:
+            f = Image.open(preview_path).resize((128, 128)).convert('RGBA')
             Image.alpha_composite(f, border).save('gen/' + simple_name + '.png', "PNG")
             files.append(('gen/' + simple_name + '.png', repo[1], age))
         else:

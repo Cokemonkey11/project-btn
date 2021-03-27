@@ -6,7 +6,7 @@
 
 	"days-for-active": "90",
 
-	"preview-path": "resource/preview/war3mapPreview.png",
+	"preview-paths": ["imports/war3mapPreview.tga", "resource/preview/war3mapPreview.png"],
 
 	"imgur": {
 		"client-id":     "",
