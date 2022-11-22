@@ -57,7 +57,7 @@ if __name__ == "__main__":
         origin.fetch(depth=1)
         r.git.reset('--hard', 'origin/master')
 
-        date = datetime.datetime.fromtimestamp(int(r.rev_parse('head').committed_date))
+        date = datetime.datetime.fromtimestamp(int(r.rev_parse('HEAD').committed_date))
         age = (now - date).days
         if age > active_age_max:
             border = passive

@@ -1,15 +1,24 @@
 {
 	"repositories": [
-		["git@bitbucket.org:Cokemonkey11/very-scared-footmen.git",   "http://www.hiveworkshop.com/threads/hot-potato-019.198768/"],
-		["git@bitbucket.org:Cokemonkey11/hunters-hall.git", "http://www.hiveworkshop.com/threads/hunters-hall-1-5-1.164630/"]
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/kill-katydma.git", "https://www.hiveworkshop.com/threads/kill-katydma-0-1-2.336462/"],
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/super-smash-heroes.git", "https://www.hiveworkshop.com/threads/super-smash-heroes-0-10-1.331596/"],
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/hunters-hall.git", "https://www.hiveworkshop.com/threads/hunters-hall-1-6-0.164630/"],
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/microrunnertd.git", "https://www.hiveworkshop.com/threads/microrunnertd-1-1-4.286363/"],
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/the-gorge.git", "https://www.hiveworkshop.com/threads/battle-planes-0-15-0.292325/"],
+		["https://Cokemonkey11@bitbucket.org/Cokemonkey11/gargonach.git", "https://www.hiveworkshop.com/threads/gargonach-0-1-1.216521/"]
 	],
 
 	"days-for-active": "90",
 
-	"preview-paths": ["imports/war3mapPreview.tga", "resource/preview/war3mapPreview.png"],
+	"preview-paths": [
+		"imports/war3mapPreview.tga",
+		"resource/preview/war3mapPreview.png",
+		"assets/preview.png",
+		"resource/Preview/war3mapPreview.png"
+	],
 
 	"imgur": {
-		"client-id":     "",
-		"client-secret": ""
+		"client-id":     "8a...",
+		"client-secret": "f8..."
 	}
 }
